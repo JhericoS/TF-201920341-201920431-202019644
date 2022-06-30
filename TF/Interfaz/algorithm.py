@@ -1,6 +1,4 @@
 import json
-<<<<<<< Updated upstream
-=======
 import random as r
 import math
 import heapq as hq
@@ -104,7 +102,6 @@ def dijkstra(G, s):
 
 G, Loc = transformGraph()
 
->>>>>>> Stashed changes
 
 def graph():
     Loc = [(10, 10), (10, 24), (23, 22), (20, 11)]
