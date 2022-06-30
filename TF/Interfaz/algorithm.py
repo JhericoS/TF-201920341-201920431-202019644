@@ -2,13 +2,26 @@ import json
 import random as r
 import math
 import heapq as hq
+import re
 
+
+def pasarLoc():
+  with open("loc.txt",) as f:
+    G = []
+    for line in f:
+      line = re.sub("\,|\\n", "", line)
+      nums = [float(x) for x in line.split()]
+      for i in range(0, len(nums), 2):
+        G.append((nums[i], nums[i+1]))
+
+  return G
 
 def transformGraph():
-    n, m = 20, 30
-    Loc = [(i * 100 - r.randint(145, 155), j * 100 - r.randint(145, 155))
-           for i in range(1, n + 1) for j in range(1, m + 1)]
-    G = [[] for _ in range(n * m)]
+    n, m = 4, 43
+    #Loc = [(i * 100 - r.randint(145, 155), j * 100 - r.randint(145, 155))
+    #       for i in range(1, n + 1) for j in range(1, m + 1)]
+    Loc =pasarLoc()
+    G = [[] for _ in range(n * m +1)]
     for i in range(n):
         for j in range(m):
             adjs = [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]

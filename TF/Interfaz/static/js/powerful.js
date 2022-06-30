@@ -19,9 +19,9 @@
     left: 10
   };
   const box = {
-    width: 1600,
-    height: 1000,
-    bwidth: 1600 - margin.left - margin.right,
+    width: 4000,
+    height: 1500,
+    bwidth: 1000 - margin.left - margin.right,
     bheight: 1000 - margin.top - margin.bottom,
   };
 
@@ -102,3 +102,5 @@
   // Empezamos
 
 })();
+
+/* vim: set tabstop=2:softtabstop=2:shiftwidth=2:noexpandtab */
