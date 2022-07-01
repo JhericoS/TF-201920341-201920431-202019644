@@ -4,13 +4,15 @@ import math
 import heapq as hq
 import re
 
-with open("file 0502a.txt") as f:
-  G = []
-  for line in f:
-    nums = [int(x) for x in line.split()]
-    G.append([])
-    for i in range(0, len(nums), 3):
-      G[-1].append((nums[i], nums[i+1]),nums[i+2])
+def nombre():
+  with open("file 0502a.txt") as f:
+    G = []
+    for line in f:
+      nums = [int(x) for x in line.split()]
+      G.append([])
+      for i in range(0, len(nums), 3):
+       G[-1].append((nums[i], nums[i+1],nums[i+2]))
+  return G
 
 def pasarLoc():
   with open("loc.txt",) as f:
@@ -39,14 +41,15 @@ def transformGraph():
     for fila in x:
       suma += fila
     n=len(x)
-    G = [[] for _ in range(suma +1-19)]
-    for i in range(n):
+    #G = [[] for _ in range(suma +1-19)]
+    G= nombre()
+    """for i in range(n):
         m=x[i]
         for j in range(m):
             adjs = [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]
             for u, v in adjs:
                 if u >= 0 and u < n and v >= 0 and v < m:
-                    G[i * m + j].append((u * m + v, r.randint(1, 345353)))
+                    G[i * m + j].append((u * m + v, r.randint(1, 345353)))"""
     return G, Loc
 
 
@@ -96,7 +99,7 @@ def dijkstra(G, s):
         g, u = hq.heappop(pqueue)
         if not visited[u]:
             visited[u] = True
-            for v, w in G[u]:
+            for v, w, k in G[u]:
                 if not visited[v]:
                     f = g + w
                     if f < cost[v]:
@@ -119,10 +122,10 @@ def graph():
 
 def paths(s, t):
     bestpath, _ = dijkstra(G, s)
-    path1 = bfs(G, s)
-    path2 = dfs(G, s)
-
-    response = {"bestpath": bestpath, "path1": path1, "path2": path2}
+    #path1 = bfs(G, s)
+    #path2 = dfs(G, s)
+    response = {"bestpath": bestpath }
+    #response = {"bestpath": bestpath, "path1": path1, "path2": path2}
 
     return json.dumps(response)
 

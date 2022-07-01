@@ -8,7 +8,7 @@
   const s = Math.floor(Math.random() * graph.g.length);
   const t = Math.floor(Math.random() * graph.g.length);
   const urlpaths = `paths/${s}/${t}`
-  const paths = await d3.json(urlpaths);
+  //const paths = await d3.json(urlpaths);
 
   // config
 
@@ -84,9 +84,9 @@
     }
     render(points, color, 4)
   }
-  dealWithPath(paths.bestpath, "darkgreen")
-  dealWithPath(paths.path1, "orange")
-  dealWithPath(paths.path2, "red")
+  //dealWithPath(paths.bestpath, "darkgreen")
+ // dealWithPath(paths.path1, "orange")
+  //dealWithPath(paths.path2, "red")
 
   ctx.fillStyle = "LimeGreen";
   ctx.fillRect(x(graph.loc[s]) - 5, y(graph.loc[s]) - 5, 10, 10)
