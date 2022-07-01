@@ -4,6 +4,13 @@ import math
 import heapq as hq
 import re
 
+with open("file 0502a.txt") as f:
+  G = []
+  for line in f:
+    nums = [int(x) for x in line.split()]
+    G.append([])
+    for i in range(0, len(nums), 3):
+      G[-1].append((nums[i], nums[i+1]),nums[i+2])
 
 def pasarLoc():
   with open("loc.txt",) as f:
