@@ -36,7 +36,7 @@ def pasarLoc():
   return G, a
 
 def pasarLoc2():
-  with open("loc2.txt",) as f:
+  with open("loc1.txt",) as f:
     G = []
     for line in f:
       line = re.sub("\,|\\n", "", line)
@@ -47,7 +47,7 @@ def pasarLoc2():
   return G
 
 def transformGraph():
-    n, m = 4, 43
+    n, m = 23, 43
     #noise = PerlinNoise(octaves=5, seed=1981)
     #xpix, ypix = n, m
    # pic = [[noise([i/xpix, j/ypix]) for j in range(xpix)] for i in range(ypix)]
