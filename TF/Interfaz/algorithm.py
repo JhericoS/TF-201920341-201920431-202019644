@@ -4,6 +4,7 @@ import math
 import heapq as hq
 import re
 
+
 def nombre():
   with open("file 0502a.txt") as f:
     G = []
@@ -11,8 +12,9 @@ def nombre():
       nums = [int(x) for x in line.split()]
       G.append([])
       for i in range(0, len(nums), 3):
-        G[-1].append((nums[i], nums[i+1],nums[i+2]))
+       G[-1].append((nums[i], nums[i+1], nums[i+2]))
   return G
+
 
 def pasarLoc():
   with open("loc.txt",) as f:
@@ -32,17 +34,18 @@ def pasarLoc():
   a.pop(0)
   return G, a
 
+
 def transformGraph():
     #n, m = 8, 56
     #Loc = [(i * 100 - r.randint(145, 155), j * 100 - r.randint(145, 155))
     #       for i in range(1, n + 1) for j in range(1, m + 1)]
-    Loc, x =pasarLoc()
+    Loc, x = pasarLoc()
     suma = 0
     for fila in x:
       suma += fila
-    n=len(x)
+    n = len(x)
     #G = [[] for _ in range(suma +1-19)]
-    G= nombre()
+    G = nombre()
     """for i in range(n):
         m=x[i]
         for j in range(m):
@@ -62,7 +65,7 @@ def bfs(G, s):
 
   while queue:
     u = queue.pop(0)
-    for v, _  in G[u]:
+    for v, _ in G[u]:
       if not visited[v]:
         visited[v] = True
         path[v] = u
@@ -87,26 +90,24 @@ def dfs(G, s):
   return path
 
 
-
-
 def dijkstra(G, s):
-    n= len(G)
-    visited= [False]*n
-    path= [-1]*n
-    cost= [math.inf]*n
+    n = len(G)
+    visited = [False]*n
+    path = [-1]*n
+    cost = [math.inf]*n
 
-    cost[s]= 0
-    pqueue= [(0, s)]
+    cost[s] = 0
+    pqueue = [(0, s)]
     while pqueue:
-        g, u= hq.heappop(pqueue)
+        g, u = hq.heappop(pqueue)
         if not visited[u]:
-            visited[u]= True
+            visited[u] = True
             for v, w, k in G[u]:
                 if not visited[v]:
-                    f= g + w
+                    f = g + w
                     if f < cost[v]:
-                        cost[v]= f
-                        path[v]= u
+                        cost[v] = f
+                        path[v] = u
                         hq.heappush(pqueue, (f, v))
 
     return path, cost
@@ -126,8 +127,7 @@ def paths(s, t):
     bestpath, _ = dijkstra(G, s)
     #path1 = bfs(G, s)
     #path2 = dfs(G, s)
-    response = {"bestpath": bestpath }
-    #response = {"bestpath": bestpath, "path1": path1 }
+    response = {"bestpath": bestpath}
     #response = {"bestpath": bestpath, "path1": path1, "path2": path2}
 
     return json.dumps(response)
