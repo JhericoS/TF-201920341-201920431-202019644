@@ -11,7 +11,7 @@ def nombre():
       nums = [int(x) for x in line.split()]
       G.append([])
       for i in range(0, len(nums), 3):
-       G[-1].append((nums[i], r.randint(1, 345353)))
+        G[-1].append((nums[i], nums[i+1],nums[i+2]))
   return G
 
 def pasarLoc():
@@ -101,7 +101,7 @@ def dijkstra(G, s):
         g, u= hq.heappop(pqueue)
         if not visited[u]:
             visited[u]= True
-            for v, w in G[u]:
+            for v, w, k in G[u]:
                 if not visited[v]:
                     f= g + w
                     if f < cost[v]:
