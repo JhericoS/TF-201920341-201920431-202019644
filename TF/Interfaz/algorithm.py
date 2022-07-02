@@ -11,7 +11,7 @@ def nombre():
       nums = [int(x) for x in line.split()]
       G.append([])
       for i in range(0, len(nums), 3):
-       G[-1].append((nums[i], nums[i+1],nums[i+2]))
+       G[-1].append((nums[i], r.randint(1, 345353)))
   return G
 
 def pasarLoc():
@@ -62,7 +62,7 @@ def bfs(G, s):
 
   while queue:
     u = queue.pop(0)
-    for v, _ in G[u]:
+    for v, _  in G[u]:
       if not visited[v]:
         visited[v] = True
         path[v] = u
@@ -87,24 +87,26 @@ def dfs(G, s):
   return path
 
 
-def dijkstra(G, s):
-    n = len(G)
-    visited = [False]*n
-    path = [-1]*n
-    cost = [math.inf]*n
 
-    cost[s] = 0
-    pqueue = [(0, s)]
+
+def dijkstra(G, s):
+    n= len(G)
+    visited= [False]*n
+    path= [-1]*n
+    cost= [math.inf]*n
+
+    cost[s]= 0
+    pqueue= [(0, s)]
     while pqueue:
-        g, u = hq.heappop(pqueue)
+        g, u= hq.heappop(pqueue)
         if not visited[u]:
-            visited[u] = True
-            for v, w, k in G[u]:
+            visited[u]= True
+            for v, w in G[u]:
                 if not visited[v]:
-                    f = g + w
+                    f= g + w
                     if f < cost[v]:
-                        cost[v] = f
-                        path[v] = u
+                        cost[v]= f
+                        path[v]= u
                         hq.heappush(pqueue, (f, v))
 
     return path, cost
@@ -125,6 +127,7 @@ def paths(s, t):
     #path1 = bfs(G, s)
     #path2 = dfs(G, s)
     response = {"bestpath": bestpath }
+    #response = {"bestpath": bestpath, "path1": path1 }
     #response = {"bestpath": bestpath, "path1": path1, "path2": path2}
 
     return json.dumps(response)

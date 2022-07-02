@@ -84,8 +84,8 @@
     }
     render(points, color, 4)
   }
-  //dealWithPath(paths.bestpath, "darkgreen")
- // dealWithPath(paths.path1, "orange")
+  dealWithPath(paths.bestpath, "rgba(0, 128, 0, 0.5)")
+  //dealWithPath(paths.path1, "orange")
   //dealWithPath(paths.path2, "red")
 
   ctx.fillStyle = "LimeGreen";
