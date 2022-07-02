@@ -3,7 +3,7 @@ import random as r
 import math
 import heapq as hq
 import re
-
+from perlin_noise import PerlinNoise
 
 def pasarLoc():
   with open("loc.txt",) as f:
@@ -18,16 +18,20 @@ def pasarLoc():
 
 def transformGraph():
     n, m = 4, 43
+    noise = PerlinNoise(octaves=5, seed=1981)
+    xpix, ypix = n, m
+    pic = [[noise([i/xpix, j/ypix]) for j in range(xpix)] for i in range(ypix)]
     #Loc = [(i * 100 - r.randint(145, 155), j * 100 - r.randint(145, 155))
     #       for i in range(1, n + 1) for j in range(1, m + 1)]
     Loc =pasarLoc()
-    G = [[] for _ in range(n * m +1)]
+    G = [[] for _ in range(n * m )]
     for i in range(n):
         for j in range(m):
             adjs = [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]
+            r.shuffle(adjs)
             for u, v in adjs:
                 if u >= 0 and u < n and v >= 0 and v < m:
-                    G[i * m + j].append((u * m + v, r.randint(1, 345353)))
+                    G[i * m + j].append((u * m + v, pic[j][i] + 10))
     return G, Loc
 
 
